@@ -1,0 +1,54 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Сareer guidance by mospolytech.">
+    <meta name="author" content="Dmitriy Grid">
+
+    <meta name="theme-color" content="#484848">
+    <meta name="msapplication-navbutton-color" content="#484848">
+    <link rel="icon" type="image/png" sizes="128x128" href="{% static 'img/favicon.ico' %}">
+
+	<title>qwestions builder</title>
+
+	<link href="{% static 'css/builder.css' %}" rel="stylesheet">
+</head>
+<body>
+	<section class="container container-small">
+		<h1>This screen is too small (</h1>
+	</section>
+
+	<section class="side-menu side-hide">
+		<div class="list">
+		  <ol>
+		  </ol>
+		</div>
+		<button onclick="downloadListHide()" class="side-btn"><</button>
+	</section>
+	
+	<section class="container container-normal">
+	  <div class="main">
+	    <div class="buttons">
+		    <input type="file" style="display:none" id="btnInputFile" onchange="btnInputFileChange(event)" accept=".json">
+		    		
+			<button class="btn" onclick="btnDownloadClick()">Download</button>
+			<button class="btn" onclick="btnUploadClick()">Upload</button>
+
+			
+			<button class="btn" onclick="btnLoadClick()">Load local</button>
+			<button class="btn" onclick="btnSaveClick()">Save local</button>
+	    </div>
+
+	    <div class="json-file">
+	      <center><button class="btn-add" onclick="addQwestion()">✚</button> </center>
+	      <div class="qwestions"></div>
+	  </div>
+	</section>
+
+	
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/builder.js' %}"></script>
+</body>
+</html>
