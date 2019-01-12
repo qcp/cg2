@@ -1,2 +1,4 @@
 /careerGuidance/migrations/*
 __pycache__/*
+__init__.py
+
