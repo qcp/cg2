@@ -53,10 +53,10 @@ def getAllJson(request):
     return HttpResponse(json.dumps(response), content_type="application/json")
 
 @login_required
-def setJson(request, id):
+def setJson(request):
     if request.method == 'POST':
         # путь уже содержит папку, нужно брать только название файла, тогда папка не будет дублироваться
-        json = Json.objects.create( name = str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" - "+request.POST.get("name")) )
+        json = Json.objects.create( name = str(str(datetime.datetime.now().strftime('%Y-%m-%d %H:%M:%S')+" - "+request.POST.get("name"))) )
         json.json.save(request.POST.get("json_name"), ContentFile(request.POST.get("json").encode('utf-8')))
         json.results.save(request.POST.get("results_name"), ContentFile(res.encode('utf-8')))
         json.save()
@@ -72,7 +72,4 @@ def getJson(request, id):
 def qbIndex(request):
     return render(request, 'qwestionsBuilder.html')
 
-@login_required
-def qbNew(request, id):
-    return render(request, 'qwestionsBuilder.html')
 

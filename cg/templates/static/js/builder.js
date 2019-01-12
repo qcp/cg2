@@ -1,10 +1,13 @@
 var qwestionsList = [];
 var lastIndex = 0;
 var Jsons = [];
-var currentJson = [];
+var currentJson = {
+	name:"New - ",
+	json: "new_json",
+	results:"new_results"};
 
 $( document ).ready(function() {
-	var url = $(location).attr('href').split('/')[4];
+	var url = $(location).attr('href').split('/')[7];
 	if($.isNumeric(url)){
 		$.getJSON("/getJson/"+url)
 		.done(function(data){
@@ -29,6 +32,7 @@ $( document ).ready(function() {
 		})
 	}
 });
+
 
 function btnSaveClick(){
 	if ('Blob' in window) {
@@ -191,14 +195,13 @@ function btnUploadClick(){
 
 	$.ajax({
 		type: "POST",    
-		url: "/setJson/"+currentJson.id+"/",
+		url: "/setJson",
 		//username:"",
 		//password:"",
 		beforeSend: function(xhr, settings){
         	xhr.setRequestHeader("X-CSRFToken", getCookie("csrftoken"))
     	},
 		data:{
-			id: currentJson.id,
 			name: currentJson.name,
 			json_name: currentJson.json,
 			json: JSON.stringify(qwestionsList),

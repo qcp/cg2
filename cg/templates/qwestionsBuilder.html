@@ -12,7 +12,6 @@
     <link rel="icon" type="image/png" sizes="128x128" href="{% static 'img/favicon.ico' %}">
 
 	<title>qwestions builder</title>
-
 	<link href="{% static 'css/builder.css' %}" rel="stylesheet">
 </head>
 <body>
@@ -33,12 +32,12 @@
 	    <div class="buttons">
 		    <input type="file" style="display:none" id="btnInputFile" onchange="btnInputFileChange(event)" accept=".json">
 		    		
-			<button class="btn" onclick="btnDownloadClick()">Download</button>
-			<button class="btn" onclick="btnUploadClick()">Upload</button>
+			<button class="btn" onclick="btnDownloadClick()">Загрузить</button>
+			<button class="btn" onclick="btnUploadClick()">Сохранить копию</button>
 
 			
-			<button class="btn" onclick="btnLoadClick()">Load local</button>
-			<button class="btn" onclick="btnSaveClick()">Save local</button>
+			<button class="btn" onclick="btnLoadClick()">Загрузить с диска</button>
+			<button class="btn" onclick="btnSaveClick()">Сохранить на диск</button>
 	    </div>
 
 	    <div class="json-file">

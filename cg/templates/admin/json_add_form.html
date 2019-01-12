@@ -1,0 +1,71 @@
+{% extends "admin/base_site.html" %}
+{% load i18n admin_urls static admin_modify %}
+
+{% block extrahead %}{{ block.super }}
+<script type="text/javascript" src="{% url 'admin:jsi18n' %}"></script>
+{{ media }}
+{% endblock %}
+
+{% block extrastyle %}{{ block.super }}
+<link rel="stylesheet" type="text/css" href="{% static "admin/css/forms.css" %}">
+<link href="{% static 'css/builder.css' %}" rel="stylesheet">
+{% endblock %}
+<meta name="theme-color" content="#484848">
+<meta name="msapplication-navbutton-color" content="#484848">
+<link rel="icon" type="image/png" sizes="128x128" href="{% static 'img/favicon.ico' %}">
+
+
+{% block coltype %}colM{% endblock %}
+
+{% block bodyclass %}{{ block.super }} app-{{ opts.app_label }} model-{{ opts.model_name }} change-form{% endblock %}
+
+{% if not is_popup %}
+{% block breadcrumbs %}
+<div class="breadcrumbs">
+<a href="{% url 'admin:index' %}">{% trans 'Home' %}</a>
+&rsaquo; <a href="{% url 'admin:app_list' app_label=opts.app_label %}">{{ opts.app_config.verbose_name }}</a>
+&rsaquo; {% if has_view_permission or is_new %}<a href="{% url opts|admin_urlname:'changelist' %}">{{ opts.verbose_name_plural|capfirst }}</a>{% else %}{{ opts.verbose_name_plural|capfirst }}{% endif %}
+&rsaquo; {% if add or is_new %}{% blocktrans with name=opts.verbose_name %}Add {{ name }}{% endblocktrans %}{% else %}{{ original|truncatewords:"18" }}{% endif %}
+
+</div>
+{% endblock %}
+{% endif %}
+
+{% block content %}
+{% if is_new %} <h1>Создать новый json на основе</h1> {% endif %}
+{% block object-tools %}
+{% if not is_popup %}
+  <ul class="object-tools">
+    <li><a href='javascript:;' onclick="btnDownloadClick()">Загрузить с сервера</a></li>
+    <li><a href='javascript:;' onclick="btnUploadClick()">Сохранить на сервер</a></li>
+    <li><a href='javascript:;' onclick="btnLoadClick()">Загрузить с диска</a></li>
+    <li><a href='javascript:;' onclick="btnSaveClick()">Сохранить на диск</a></li>
+  </ul>
+{% endif %}
+{% endblock %}
+<input type="file" style="display:none" id="btnInputFile" onchange="btnInputFileChange(event)" accept=".json">
+
+<section class="container container-small">
+		<h1>This screen is too small (</h1>
+	</section>
+
+	<section class="side-menu side-hide">
+		<div class="list">
+		  <ol>
+		  </ol>
+		</div>
+		<button onclick="downloadListHide()" class="side-btn"><</button>
+	</section>
+	
+	<section class="container container-normal">
+	  <div class="main">
+	    <div class="json-file">
+	      <center><button class="btn-add" onclick="addQwestion()">✚</button> </center>
+	      <div class="qwestions"></div>
+	  </div>
+	</section>
+
+	
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/builder.js' %}"></script>
+{% endblock %}

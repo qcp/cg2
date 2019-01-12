@@ -25,7 +25,7 @@ SECRET_KEY = 'a_+da$6^u*4+_+yibc*vw-ch*p03@mi7x2n#l)spn1b3m27v@p'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', 'cg.std-642.ist.mospolytech.ru']
+ALLOWED_HOSTS = ['127.0.0.1', 'cg.std-642.ist.mospolytech.ru', 'cgdev.std-642.ist.mospolytech.ru']
 
 
 # Application definition
